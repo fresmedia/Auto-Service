@@ -127,7 +127,7 @@ class BlogsController extends Controller
                 })
                 ->editColumn('image', function ($row) {
                     if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/blogs/' . $row->image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('assets/images/blogs/' . $row->image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
@@ -191,7 +191,7 @@ class BlogsController extends Controller
             }
 
             if (!is_null($request->image)) {
-                $blog->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/blogs');
+                $blog->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'assets/images/blogs');
             }
 
             $blog->status = $request->status;
@@ -277,7 +277,7 @@ class BlogsController extends Controller
             $blog->status = $request->status;
 
             if (!is_null($request->image)) {
-                $blog->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/blogs', $blog->image);
+                $blog->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'assets/images/blogs', $blog->image);
             }
 
             $blog->status = $request->status;
@@ -370,7 +370,7 @@ class BlogsController extends Controller
         }
 
         // Remove Image
-        UploadHelper::deleteFile('public/assets/images/blogs/' . $blog->image);
+        UploadHelper::deleteFile('assets/images/blogs/' . $blog->image);
 
         // Delete Blog permanently
         $blog->delete();

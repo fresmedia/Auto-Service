@@ -53,7 +53,7 @@
                                     <label class="control-label" for="image">Page Featured Image</label>
                                     <br>
                                     @if ($page->image != null)
-                                    <img src="{{ asset('public/assets/images/pages/'.$page->image) }}" alt="Image" class="img width-100" />
+                                    <img src="{{ asset('assets/images/pages/'.$page->image) }}" alt="Image" class="img width-100" />
                                     @else 
                                     <span class="border p-2">
                                         No Image
@@ -67,7 +67,7 @@
                                     <label class="control-label" for="banner_image">Page Banner Image</label>
                                     <br>
                                     @if ($page->banner_image != null)
-                                    <img src="{{ asset('public/assets/images/pages/'.$page->banner_image) }}" alt="Image" class="img img-display-list" />
+                                    <img src="{{ asset('assets/images/pages/'.$page->banner_image) }}" alt="Image" class="img img-display-list" />
                                     @else 
                                     <span class="border p-2">
                                         No Image

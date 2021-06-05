@@ -74,12 +74,12 @@ $chapter_translation = $termRepository::get_term_detail_by_key($detail1->code, $
                     <div class="col-md-3 g-2 p-2">
                         <div class="bg-light p-4">
                             <a href="https://www.fres.fi" target="_blank"><img
-                                    src="{{ asset('public/images/fres.png') }}" width="100%"></a>
+                                    src="{{ asset('images/fres.png') }}" width="100%"></a>
                         </div>
                         <hr>
                         <div class="bg-light p-4">
                             <a href="https://www.edufif.com" target="_blank"><img
-                                    src="{{ asset('public/images/edufif500.png') }}" width="100%"></a>
+                                    src="{{ asset('images/edufif500.png') }}" width="100%"></a>
                         </div>
                     </div>
                 </div>

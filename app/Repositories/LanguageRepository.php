@@ -22,7 +22,7 @@ class LanguageRepository
                 'code',
                 DB::raw('UPPER(code) as code_upper_case'),
                 'country',
-                DB::raw('CONCAT("' . asset('public/img/flags/') . '/", flag) AS flag')
+                DB::raw('CONCAT("' . asset('img/flags/') . '/", flag) AS flag')
             )
             ->orderBy('name', 'asc');
 

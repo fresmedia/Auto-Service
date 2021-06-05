@@ -84,13 +84,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="image">Article Featured Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="image" name="image" data-default-file="{{ $page->image != null ? asset('public/assets/images/pages/'.$page->image) : null }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="image" name="image" data-default-file="{{ $page->image != null ? asset('assets/images/pages/'.$page->image) : null }}"/>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="banner_image">Article Banner Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" data-default-file="{{ $page->banner_image != null ? asset('public/assets/images/pages/'.$page->banner_image) : null }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" data-default-file="{{ $page->banner_image != null ? asset('assets/images/pages/'.$page->banner_image) : null }}"/>
                                 </div>
                             </div>
                         </div>

@@ -83,7 +83,7 @@ class PagesController extends Controller
                     }
                 )
                 ->editColumn('image', function ($row) {
-                    $url = url("public/assets/backend/images/pages/" . $row->image);
+                    $url = url("assets/backend/images/pages/" . $row->image);
                     return '<a class="dropdown-item" href="#showModal' . $row->id . '" data-toggle="modal"><img class="report-min-img" src="' . $url . '"></a>
 
                       <div class="modal fade delete-modal" id="showModal' . $row->id . '" tabindex="-1" role="dialog"
@@ -164,7 +164,7 @@ class PagesController extends Controller
             }
 
             if (!is_null($request->image)) {
-                $pages->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time(), 'public/assets/backend/images/pages');
+                $pages->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time(), 'assets/backend/images/pages');
             }
             $pages->description = $request->description;
             $pages->created_at = Carbon::now();
@@ -236,7 +236,7 @@ class PagesController extends Controller
             // $pages->slug = $request->slug;
 
             if (!is_null($request->image)) {
-                $pages->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time(), 'public/assets/backend/images/pages');
+                $pages->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time(), 'assets/backend/images/pages');
             }
             $pages->description = $request->description;
             $pages->created_at = Carbon::now();
@@ -305,7 +305,7 @@ class PagesController extends Controller
             $settings = Setting::find($id);
             $settings->name = $request->name;
             if (!is_null($request->logo)) {
-                $settings->logo = UploadHelper::upload('logo', $request->logo, $request->title . '-' . time(), 'public/assets/backend/images/logo');
+                $settings->logo = UploadHelper::upload('logo', $request->logo, $request->title . '-' . time(), 'assets/backend/images/logo');
             }
             $settings->contact_toll_free_number = $request->contact_toll_free_number;
             $settings->contact_hotline_number = $request->contact_hotline_number;

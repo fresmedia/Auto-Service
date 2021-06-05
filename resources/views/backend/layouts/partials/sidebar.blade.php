@@ -66,6 +66,34 @@
                 </li>
                 @endcan
 
+                @if ($user->can('location.view') || $user->can('location.create'))
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-tune"></i>
+                            <span class="hide-menu">Locations </span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.locations.index') || Route::is('admin.locations.create') || Route::is('admin.locations.edit')) ? 'in' : null }}">
+                            @if ($user->can('category.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.locations.index') }}" class="sidebar-link {{ (Route::is('admin.locations.index') || Route::is('admin.locations.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-view-list"></i>
+                                    <span class="hide-menu"> Location List </span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if ($user->can('category.create'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.locations.create') }}" class="sidebar-link {{ Route::is('admin.locations.create') ? 'active' : null }}">
+                                    <i class="mdi mdi-plus-circle"></i>
+                                    <span class="hide-menu"> New Location </span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
                 @if ($user->can('category.view') || $user->can('category.create'))
                 <li class="sidebar-item ">
                     <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">

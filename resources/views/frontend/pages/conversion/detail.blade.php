@@ -7,7 +7,7 @@ Learn {{ $detail1->name }} in {{ $detail2->name }} | {{ config('app.name') }}
 @section('main-content')
 
 <div class="fres">
-    <div class="view" style="background-image: url('{{ asset("public/images/foto2.jpg") }}'); min-height:400px; width:100%; background-repeat: no-repeat; background-position: top center;">
+    <div class="view" style="background-image: url('{{ asset("images/foto2.jpg") }}'); min-height:400px; width:100%; background-repeat: no-repeat; background-position: top center;">
         <div class="container">
             <div class="row">
                 <div class="col-md-8 g-2 p-2">

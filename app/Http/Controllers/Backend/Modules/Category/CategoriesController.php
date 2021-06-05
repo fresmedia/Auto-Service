@@ -129,13 +129,13 @@ class CategoriesController extends Controller
                 })
                 ->editColumn('banner_image', function ($row) {
                     if ($row->banner_image != null) {
-                        return "<img src='" . asset('public/assets/images/categories/' . $row->banner_image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('assets/images/categories/' . $row->banner_image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
                 ->editColumn('logo_image', function ($row) {
                     if ($row->logo_image != null) {
-                        return "<img src='" . asset('public/assets/images/categories/' . $row->logo_image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('assets/images/categories/' . $row->logo_image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
@@ -210,11 +210,11 @@ class CategoriesController extends Controller
             }
 
             if (!is_null($request->banner_image)) {
-                $category->banner_image = UploadHelper::upload('banner_image', $request->banner_image, $request->name . '-' . time() . '-banner', 'public/assets/images/categories');
+                $category->banner_image = UploadHelper::upload('banner_image', $request->banner_image, $request->name . '-' . time() . '-banner', 'assets/images/categories');
             }
 
             if (!is_null($request->logo_image)) {
-                $category->logo_image = UploadHelper::upload('logo_image', $request->logo_image, $request->name . '-' . time() . '-logo', 'public/assets/images/categories');
+                $category->logo_image = UploadHelper::upload('logo_image', $request->logo_image, $request->name . '-' . time() . '-logo', 'assets/images/categories');
             }
 
             $category->parent_category_id = $request->parent_category_id;
@@ -326,11 +326,11 @@ class CategoriesController extends Controller
             $category->slug = $request->slug;
             $category->status = $request->status;
             if (!is_null($request->banner_image)) {
-                $category->banner_image = UploadHelper::update('banner_image', $request->banner_image, $request->name . '-' . time() . '-banner', 'public/assets/images/categories', $category->banner_image);
+                $category->banner_image = UploadHelper::update('banner_image', $request->banner_image, $request->name . '-' . time() . '-banner', 'assets/images/categories', $category->banner_image);
             }
 
             if (!is_null($request->logo_image)) {
-                $category->logo_image = UploadHelper::update('logo_image', $request->logo_image, $request->name . '-' . time() . '-logo', 'public/assets/images/categories', $category->logo_image);
+                $category->logo_image = UploadHelper::update('logo_image', $request->logo_image, $request->name . '-' . time() . '-logo', 'assets/images/categories', $category->logo_image);
             }
 
             $category->parent_category_id = $request->parent_category_id;
@@ -454,8 +454,8 @@ class CategoriesController extends Controller
         }
 
         // Remove Images
-        UploadHelper::deleteFile('public/assets/images/categorys/' . $category->banner_image);
-        UploadHelper::deleteFile('public/assets/images/categorys/' . $category->image);
+        UploadHelper::deleteFile('assets/images/categorys/' . $category->banner_image);
+        UploadHelper::deleteFile('assets/images/categorys/' . $category->image);
 
         // Delete Category permanently
         $category->delete();

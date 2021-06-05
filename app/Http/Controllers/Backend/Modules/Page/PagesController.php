@@ -129,13 +129,13 @@ class PagesController extends Controller
                 })
                 ->editColumn('banner_image', function ($row) {
                     if ($row->banner_image != null) {
-                        return "<img src='" . asset('public/assets/images/pages/' . $row->banner_image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('assets/images/pages/' . $row->banner_image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
                 ->editColumn('image', function ($row) {
                     if ($row->image != null) {
-                        return "<img src='" . asset('public/assets/images/pages/' . $row->image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('assets/images/pages/' . $row->image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
@@ -212,11 +212,11 @@ class PagesController extends Controller
             }
 
             if (!is_null($request->banner_image)) {
-                $page->banner_image = UploadHelper::upload('banner_image', $request->banner_image, $request->title . '-' . time() . '-banner', 'public/assets/images/pages');
+                $page->banner_image = UploadHelper::upload('banner_image', $request->banner_image, $request->title . '-' . time() . '-banner', 'assets/images/pages');
             }
 
             if (!is_null($request->image)) {
-                $page->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/pages');
+                $page->image = UploadHelper::upload('image', $request->image, $request->title . '-' . time() . '-logo', 'assets/images/pages');
             }
 
             $page->category_id = $request->category_id;
@@ -308,11 +308,11 @@ class PagesController extends Controller
             $page->slug = $request->slug;
             $page->status = $request->status;
             if (!is_null($request->banner_image)) {
-                $page->banner_image = UploadHelper::update('banner_image', $request->banner_image, $request->title . '-' . time() . '-banner', 'public/assets/images/pages', $page->banner_image);
+                $page->banner_image = UploadHelper::update('banner_image', $request->banner_image, $request->title . '-' . time() . '-banner', 'assets/images/pages', $page->banner_image);
             }
 
             if (!is_null($request->image)) {
-                $page->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'public/assets/images/pages', $page->image);
+                $page->image = UploadHelper::update('image', $request->image, $request->title . '-' . time() . '-logo', 'assets/images/pages', $page->image);
             }
 
             $page->category_id = $request->category_id;
@@ -408,8 +408,8 @@ class PagesController extends Controller
         }
 
         // Remove Images
-        UploadHelper::deleteFile('public/assets/images/pages/' . $page->banner_image);
-        UploadHelper::deleteFile('public/assets/images/pages/' . $page->image);
+        UploadHelper::deleteFile('assets/images/pages/' . $page->banner_image);
+        UploadHelper::deleteFile('assets/images/pages/' . $page->image);
 
         // Delete Page permanently
         $page->delete();

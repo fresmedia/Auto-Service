@@ -25,10 +25,10 @@ class CreateTracksTable extends Migration
 
             $table->foreign('deleted_by')
                 ->references('id')
-                ->on('admins')
+                ->on('users')
                 ->onDelete('cascade');
 
-            $table->foreign('admin_id')->references('id')->on('admins')->onDelete('cascade');
+            $table->foreign('admin_id')->references('id')->on('users')->onDelete('cascade');
             $table->timestamps();
         });
     }

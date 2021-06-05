@@ -319,7 +319,7 @@ class AdminsController extends Controller
             }
 
             if (!is_null($request->avatar)) {
-                $admin->avatar   = UploadHelper::update('avatar', $request->avatar, $request->username, 'public/assets/images/admins', $admin->avatar);
+                $admin->avatar   = UploadHelper::update('avatar', $request->avatar, $request->username, 'assets/images/admins', $admin->avatar);
             }
 
             $admin->status      = $request->status;

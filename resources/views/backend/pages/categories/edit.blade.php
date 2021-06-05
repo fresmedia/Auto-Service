@@ -63,13 +63,13 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="banner_image">Category Banner Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" data-default-file="{{ $category->banner_image != null ? asset('public/assets/images/categories/'.$category->banner_image) : null }}" />
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="banner_image" name="banner_image" data-default-file="{{ $category->banner_image != null ? asset('assets/images/categories/'.$category->banner_image) : null }}" />
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="logo_image">Category Logo Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="logo_image" name="logo_image" data-default-file="{{ $category->logo_image != null ? asset('public/assets/images/categories/'.$category->logo_image) : null }}" />
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="logo_image" name="logo_image" data-default-file="{{ $category->logo_image != null ? asset('assets/images/categories/'.$category->logo_image) : null }}" />
                                 </div>
                             </div>
                         </div>

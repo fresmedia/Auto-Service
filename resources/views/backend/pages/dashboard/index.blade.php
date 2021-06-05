@@ -12,7 +12,7 @@
     <!-- ============================================================== -->
     <div class="container-fluid">
         <h4>
-            Hello, <strong>{{ Auth::user()->first_name .' '. Auth::user()->last_name }}</strong> Welcome to DMWords Panel.
+            Hello, <strong>{{ Auth::user()->first_name .' '. Auth::user()->last_name }}</strong> Welcome to Auto Service Panel.
         </h4>
         <p>
             Check at the left side or at the bottom to get your menus...

@@ -62,16 +62,16 @@
                     </div>
                     <div class="col-md-4 g-2 p-2">
                         <div class="bg-light p-4">
-                            <a href="https://www.fres.fi" target="_blank"><img src="{{ asset('public/images/fres.png') }}" width="100%"></a>
+                            <a href="https://www.fres.fi" target="_blank"><img src="{{ asset('images/fres.png') }}" width="100%"></a>
                         </div>
                         <hr>
                         <div class="bg-light p-4">
-                            <a href="https://www.gjiganti.com" target="_blank"><img src="{{ asset('public/images/gjiganti.png') }}"
+                            <a href="https://www.gjiganti.com" target="_blank"><img src="{{ asset('images/gjiganti.png') }}"
                                     width="100%"></a>
                         </div>
                         <hr>
                         <div class="bg-light p-4">
-                            <a href="https://www.edufif.com" target="_blank"><img src="{{ asset('public/images/edufif500.png') }}"
+                            <a href="https://www.edufif.com" target="_blank"><img src="{{ asset('images/edufif500.png') }}"
                                     width="100%"></a>
                         </div>
                     </div>

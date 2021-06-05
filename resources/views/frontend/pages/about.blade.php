@@ -4,7 +4,7 @@ About Us | {{ config('app.name') }}
 @endsection
 @section('main-content')
 <div class="fres">
-    <div class="view" style="background-image: url('{{ asset('public/images/foto1.jpg') }}'); min-height:400px; width:100%; background-repeat: no-repeat; background-position: top center;">
+    <div class="view" style="background-image: url('{{ asset('images/foto1.jpg') }}'); min-height:400px; width:100%; background-repeat: no-repeat; background-position: top center;">
         <div class="container top2">
             <div class="row">
                 <div class="col-md-4 g-0 p-2 lang2">

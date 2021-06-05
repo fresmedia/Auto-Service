@@ -1,4 +1,4 @@
-<script src="{{ asset('public/assets/backend/js/color-picker/jscolor.js') }}"></script>
+<script src="{{ asset('assets/backend/js/color-picker/jscolor.js') }}"></script>
 <script>
 
 $(".parent_categories_select").select2({

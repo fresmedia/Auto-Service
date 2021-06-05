@@ -10,7 +10,7 @@
             <!-- Message -->
             <a href="javascript:void(0)" class="message-item">
                 <span class="user-img">
-                    <img src="{{ asset('public/assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
+                    <img src="{{ asset('assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
                     <span class="profile-status online pull-right"></span>
                 </span>
                 <div class="mail-contnet">
@@ -22,7 +22,7 @@
             <!-- Message -->
             <a href="javascript:void(0)" class="message-item">
                 <span class="user-img">
-                    <img src="{{ asset('public/assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
+                    <img src="{{ asset('assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
                     <span class="profile-status busy pull-right"></span>
                 </span>
                 <div class="mail-contnet">
@@ -34,7 +34,7 @@
             <!-- Message -->
             <a href="javascript:void(0)" class="message-item">
                 <span class="user-img">
-                    <img src="{{ asset('public/assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
+                    <img src="{{ asset('assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
                     <span class="profile-status away pull-right"></span>
                 </span>
                 <div class="mail-contnet">
@@ -46,7 +46,7 @@
             <!-- Message -->
             <a href="javascript:void(0)" class="message-item">
                 <span class="user-img">
-                    <img src="{{ asset('public/assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
+                    <img src="{{ asset('assets/backend/images/logo-light-text.png') }}" alt="user" class="rounded-circle">
                     <span class="profile-status offline pull-right"></span>
                 </span>
                 <div class="mail-contnet">

@@ -116,7 +116,7 @@
                             <div class="col-md-3">
                                 <div class="form-group">
                                     <label class="control-label" for="avatar">Avatar <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="avatar" name="avatar"  data-default-file="{{ $admin->avatar != null ? asset('public/assets/images/admins/'.$admin->avatar) : null }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="avatar" name="avatar"  data-default-file="{{ $admin->avatar != null ? asset('assets/images/admins/'.$admin->avatar) : null }}"/>
                                 </div>
                             </div>
                         </div>

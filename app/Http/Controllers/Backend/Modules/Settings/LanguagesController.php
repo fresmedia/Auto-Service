@@ -58,7 +58,7 @@ class LanguagesController extends Controller
 
                 ->editColumn('flag', function ($row) {
                     if ($row->flag != null) {
-                        return "<img src='" . asset('public/img/flags/' . $row->flag) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('img/flags/' . $row->flag) . "' class='img img-display-list' />";
                     }
                     return '-';
                 });
@@ -113,7 +113,7 @@ class LanguagesController extends Controller
 
             $flag = null;
             if (!is_null($request->flag)) {
-                $flag = UploadHelper::upload('flag', $request->flag, $request->name . '-' . time() . '-flag', 'public/img/flags/');
+                $flag = UploadHelper::upload('flag', $request->flag, $request->name . '-' . time() . '-flag', 'img/flags/');
             }
 
             $language = Language::create([
@@ -207,7 +207,7 @@ class LanguagesController extends Controller
             $country = Country::find($request->country_id);
 
             if (!is_null($request->flag)) {
-                $flag = UploadHelper::update('flag', $request->flag, $request->name . '-' . time() . '-flag', 'public/img/flags/', $language->flag);
+                $flag = UploadHelper::update('flag', $request->flag, $request->name . '-' . time() . '-flag', 'img/flags/', $language->flag);
             }else {
                 $flag = $language->flag;
             }

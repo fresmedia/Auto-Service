@@ -4,10 +4,10 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/x-icon" href="{{ asset('public/img/favicon.ico') }}">
+    <link rel="icon" type="image/x-icon" href="{{ asset('img/favicon.ico') }}">
 
     @include('frontend.layouts.partials.styles')
-    <title>@yield('title', 'Welcome to DM Words')</title>
+    <title>@yield('title', 'Welcome to Auto Service')</title>
 </head>
 
 <body>

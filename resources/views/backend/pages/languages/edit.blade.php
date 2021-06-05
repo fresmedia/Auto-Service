@@ -58,7 +58,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="flag">Language Flag <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="flag" name="flag" data-default-file="{{ $language->flag != null ? asset('public/img/flags/'.$language->flag) : null }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="flag" name="flag" data-default-file="{{ $language->flag != null ? asset('img/flags/'.$language->flag) : null }}"/>
                                 </div>
                             </div>
 

@@ -34,7 +34,7 @@
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="image">Blog Featured Image <span class="optional">(optional)</span></label>
-                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="image" name="image" data-default-file="{{ $blog->image != null ? asset('public/assets/images/blogs/'.$blog->image) : null }}"/>
+                                    <input type="file" class="form-control dropify" data-height="70" data-allowed-file-extensions="png jpg jpeg webp" id="image" name="image" data-default-file="{{ $blog->image != null ? asset('assets/images/blogs/'.$blog->image) : null }}"/>
                                 </div>
                             </div>
 

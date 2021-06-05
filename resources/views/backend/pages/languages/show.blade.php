@@ -34,7 +34,7 @@
                                     <label class="control-label" for="image">Blog Featured Image</label>
                                     <br>
                                     @if ($blog->image != null)
-                                    <img src="{{ asset('public/assets/images/blogs/'.$blog->image) }}" alt="Image" class="img width-100" />
+                                    <img src="{{ asset('assets/images/blogs/'.$blog->image) }}" alt="Image" class="img width-100" />
                                     @else 
                                     <span class="border p-2">
                                         No Image

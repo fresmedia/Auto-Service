@@ -140,7 +140,7 @@ class AdvertisementsController extends Controller
                 })
                 ->editColumn('image', function ($row) {
                     if ($row->image != null) {
-                        return "<img src='" . asset('public/images/advertisements/' . $row->image) . "' class='img img-display-list' />";
+                        return "<img src='" . asset('images/advertisements/' . $row->image) . "' class='img img-display-list' />";
                     }
                     return '-';
                 })
@@ -208,7 +208,7 @@ class AdvertisementsController extends Controller
                 $advertisement->slug = StringHelper::createSlug($request->title, 'Advertisement', 'slug', '');
             }
             if (!is_null($request->image)) {
-                $advertisement->image = UploadHelper::upload('image', $request->image, $request->name . '-' . time() . '-banner', 'public/images/advertisements');
+                $advertisement->image = UploadHelper::upload('image', $request->image, $request->name . '-' . time() . '-banner', 'images/advertisements');
             }
 
             $advertisement->start_date = $request->start_date;
@@ -303,7 +303,7 @@ class AdvertisementsController extends Controller
             $advertisement->slug = $request->slug;
 
             if (!is_null($request->image)) {
-                $advertisement->image = UploadHelper::update('image', $request->image, $request->name . '-' . time() . '-banner', 'public/images/advertisements', $advertisement->image);
+                $advertisement->image = UploadHelper::update('image', $request->image, $request->name . '-' . time() . '-banner', 'images/advertisements', $advertisement->image);
             }
 
             $advertisement->start_date = $request->start_date;
@@ -403,8 +403,8 @@ class AdvertisementsController extends Controller
         }
 
         // Remove Images
-        UploadHelper::deleteFile('public/assets/images/categorys/' . $advertisement->image);
-        UploadHelper::deleteFile('public/assets/images/categorys/' . $advertisement->image);
+        UploadHelper::deleteFile('assets/images/categorys/' . $advertisement->image);
+        UploadHelper::deleteFile('assets/images/categorys/' . $advertisement->image);
 
         // Delete Advertisement permanently
         $advertisement->delete();

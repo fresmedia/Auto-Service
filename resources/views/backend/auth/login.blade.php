@@ -1,11 +1,11 @@
 @extends('backend.auth.master')
 
 @section('auth-content')
-<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('public/assets/backend/images/big/auth-bg.jpg') }}) no-repeat center center;">
+<div class="auth-wrapper d-flex no-block justify-content-center align-items-center" style="background:url({{ asset('assets/backend/images/big/auth-bg.jpg') }}) no-repeat center center;">
     <div class="auth-box">
         <div id="loginform">
             <div class="logo">
-                <span class="db"><img src="{{ asset('public/assets/common/logos/logo.png') }}" alt="logo" /></span>
+                <span class="db"><img src="{{ asset('assets/common/logos/logo.png') }}" alt="logo" /></span>
                 <h5 class="font-medium m-b-20">Sign In to Admin</h5>
             </div>
             <!-- Form -->
