@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Modules\Service\Entities\Models\Service;
+use Modules\Service\Entities\Models\ServiceLocation;
 
 class FrontPagesController extends Controller
 {
@@ -28,7 +30,10 @@ class FrontPagesController extends Controller
     }
 
     public function onlinePage() {
-        return view('frontend.pages.online');
+        $locations = ServiceLocation::where('status', 1)->get();
+        $primaryServices = Service::where(['service_type' => 'primary', 'status' => 1])->get();
+        $secondaryServices = Service::where(['service_type' => 'secondary', 'status' => 1])->get();
+        return view('frontend.pages.online', compact('locations', 'primaryServices', 'secondaryServices'));
     }
 
     public function contactPage() {

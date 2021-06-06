@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateServiceLocationsTable extends Migration
+class CreateServicesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,11 +13,19 @@ class CreateServiceLocationsTable extends Migration
      */
     public function up()
     {
-        Schema::create('service_locations', function (Blueprint $table) {
+        Schema::create('services', function (Blueprint $table) {
             $table->id();
-            $table->string('location_name');
-            $table->string('location_name_fi');
+            $table->string('service_title');
+            $table->string('service_title_fi');
+            $table->enum('service_type', ['primary', 'secondary'])->default('primary');
+            $table->string('slug')->unique();
+            $table->longText('service_description')->nullable();
+            $table->longText('service_description_fi')->nullable();
+            $table->text('meta_description')->nullable();
+            $table->text('meta_description_fi')->nullable();
+            $table->double('service_price', 8, 2)->default(0);
             $table->boolean('status')->default(1)->comment('1=>active, 0=>inactive');
+
             $table->softDeletes('deleted_at', 0);
             $table->unsignedBigInteger('created_by')->nullable();
             $table->unsignedBigInteger('updated_by')->nullable();
@@ -35,6 +43,7 @@ class CreateServiceLocationsTable extends Migration
                 ->references('id')
                 ->on('users')
                 ->onDelete('cascade');
+
             $table->timestamps();
         });
     }
@@ -46,6 +55,6 @@ class CreateServiceLocationsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('service_locations');
+        Schema::dropIfExists('services');
     }
 }

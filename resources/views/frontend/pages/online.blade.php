@@ -2,6 +2,11 @@
 @section('title')
 Online | {{ config('app.name') }}
 @endsection
+@section('styles')
+   <link href="{{ asset('plugins/bootstrap-datepicker/css/bootstrap-datepicker.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('plugins/bootstrap-timepicker/css/bootstrap-timepicker.min.css') }}" rel="stylesheet">
+   <link href="{{ asset('plugins/time-picker/css/timepicki.css') }}" rel="stylesheet">
+@endsection
 @section('main-content')
 <div class="fres">
     <div class="view" style="background-image: url('../images/foto1.jpg'); min-height:400px; width:100%; background-repeat: no-repeat; background-position: top center;">
@@ -11,13 +16,19 @@ Online | {{ config('app.name') }}
                 <div class="bg-light p-3">
                    <h1>Step 1</h1>
                    <p>You choose location</p>
-                   <div class="btn-group">
-                      <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Choose location</button>
-                      <div class="dropdown-menu dropdown-menu-left languages">
-                         <h1><a href="#">Helsinki</a></h1>
-                         <h1><a href="#">Vantaa</a></h1>
-                         <h1><a href="#">Other place</a></h1>
-                      </div>
+                   <div class="form-group">                  
+                      <select class="custom-select custom-select-lg">
+                        <option selected>Choose location</option>
+                        @if($locations)
+                           @foreach($locations as $location)
+                              @if(app()->getLocale() == 'fi')
+                                 <option value="{{$location->id}}">{{$location->location_name_fi}}</option>
+                              @else
+                                 <option value="{{$location->id}}">{{$location->location_name}}</option>
+                              @endif
+                           @endforeach
+                        @endif
+                      </select>
                    </div>
                 </div>
                 <div class="bg-info p-3">
@@ -26,245 +37,104 @@ Online | {{ config('app.name') }}
                    <p>After location, you choose dhe date and time</p>
                    <hr>
                    <p>Calendar is coming here to pick up date and time</p>
+                     <div class="row">
+                        <div class="col-md-6">
+                           <input type="text" id="scheduleDate" class="datepicker form_global">
+                        </div>
+                        <div class="col-md-6">
+                           <input id="serviceTime" class="form_global" type="text">
+                        </div>
+                     </div>
                 </div>
                 <div class="bg-light p-3">
                    <h1>Step 3</h1>
                    <h1>Online reservation</h1>
                    <p>From the list below, choose "book" and add the services you want to reserve.</p>
                    <div class="accordion" id="accordionExample">
-                      <div class="accordion-item">
-                         <h2 class="accordion-header" id="headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
-                               <div class="container">
-                                  <div class="row auto">
-                                     <div class="col-8">
-                                        <h1>First service</h1>
-                                     </div>
-                                     <div class="col">
-                                        <h3> book</h3>
-                                     </div>
-                                  </div>
-                               </div>
-                            </button>
-                         </h2>
-                         <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               <div class="container">
-                                  <div class="row auto">
-                                     <div class="col-8">
-                                        <ul>
-                                           <li>contain 1</li>
-                                           <li>contain 2</li>
-                                           <li>contain 3</li>
-                                           <li>contain 4</li>
-                                        </ul>
-                                     </div>
-                                     <div class="col">
-                                        <h2> 17,00 €</h2>
-                                        <h2>
-                                           <a href="#">
-                                              Add 
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                 <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                 <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                              </svg>
-                                           </a>
-                                        </h2>
-                                     </div>
-                                  </div>
-                               </div>
-                               <hr>
-                               <div class="btn-group">
-                                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add more services</button>
-                                  <div class="dropdown-menu dropdown-menu-left autocard">
-                                     <table class="table">
-                                        <tbody>
-                                           <tr>
-                                              <td>Service 1 for this car</td>
-                                              <td>5,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 2</td>
-                                              <td>7,00 € </td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 3</td>
-                                              <td>4,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 4</td>
-                                              <td>8,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                        </tbody>
-                                     </table>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="accordion-item">
-                         <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                               <div class="container">
-                                  <div class="row auto">
-                                     <div class="col-8">
-                                        <h1>Second service</h1>
-                                     </div>
-                                     <div class="col">
-                                        <h3> book</h3>
-                                     </div>
-                                  </div>
-                               </div>
-                            </button>
-                         </h2>
-                         <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               <div class="container">
-                                  <div class="row auto">
-                                     <div class="col-8">
-                                        <ul>
-                                           <li>contain 1</li>
-                                           <li>contain 2</li>
-                                           <li>contain 3</li>
-                                           <li>contain 4</li>
-                                        </ul>
-                                     </div>
-                                     <div class="col">
-                                        <h2> 17,00 €</h2>
-                                        <h2>
-                                           <a href="#">
-                                              Add 
-                                              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                 <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                 <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                              </svg>
-                                           </a>
-                                        </h2>
-                                     </div>
-                                  </div>
-                               </div>
-                               <hr>
-                               <div class="btn-group">
-                                  <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add more services</button>
-                                  <div class="dropdown-menu dropdown-menu-left autocard">
-                                     <table class="table">
-                                        <tbody>
-                                           <tr>
-                                              <td>Service 1 for this car</td>
-                                              <td>5,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 2</td>
-                                              <td>7,00 € </td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 3</td>
-                                              <td>4,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                           <tr>
-                                              <td>Service 4</td>
-                                              <td>8,00 €</td>
-                                              <td>
-                                                 <a href="#">
-                                                    Add 
-                                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
-                                                       <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
-                                                       <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
-                                                    </svg>
-                                                 </a>
-                                              </td>
-                                           </tr>
-                                        </tbody>
-                                     </table>
-                                  </div>
-                               </div>
-                            </div>
-                         </div>
-                      </div>
-                      <div class="accordion-item">
-                         <h2 class="accordion-header" id="headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse6" aria-expanded="false" aria-controls="collapse6">
-                               <div class="container">
-                                  <div class="row auto">
-                                     <div class="col-8">
-                                        <h1>Other services</h1>
-                                     </div>
-                                     <div class="col">
-                                        <h2> book</h2>
-                                     </div>
-                                  </div>
-                               </div>
-                            </button>
-                         </h2>
-                         <div id="collapse6" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
-                            <div class="accordion-body">
-                               <p>content the same as in First or Second service</p>
-                            </div>
-                         </div>
-                      </div>
+                      @if($primaryServices)
+                        @foreach($primaryServices as $pservice)
+                           <div class="accordion-item">
+                              <h2 class="accordion-header" id="heading{{$pservice->id}}">
+                                 <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{$pservice->id}}" aria-expanded="false" aria-controls="collapse{{$pservice->id}}">
+                                    <div class="container">
+                                       <div class="row auto">
+                                          <div class="col-8">
+                                             @if(app()->getLocale() == 'fi')
+                                                <h1>{{$pservice->service_title_fi}}</h1>
+                                             @else
+                                                <h1>{{$pservice->service_title}}</h1>
+                                             @endif
+                                          </div>
+                                          <div class="col">
+                                             <h3> book</h3>
+                                          </div>
+                                       </div>
+                                    </div>
+                                 </button>
+                              </h2>
+                              <div id="collapse{{$pservice->id}}" class="accordion-collapse collapse" aria-labelledby="heading{{$pservice->id}}" data-bs-parent="#accordionExample">
+                                 <div class="accordion-body">
+                                    <div class="container">
+                                       <div class="row auto">
+                                          <div class="col-8">
+                                             @if(app()->getLocale() == 'fi')
+                                                <h1>{!! $pservice->service_description_fi !!}</h1>
+                                             @else
+                                                <h1>{!! $pservice->service_description !!}</h1>
+                                             @endif
+                                          </div>
+                                          <div class="col">
+                                             <h2> {{ $pservice->service_price }} €</h2>
+                                             <h2>
+                                                <a href="#">
+                                                   Add 
+                                                   <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                                      <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                                                      <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                                   </svg>
+                                                </a>
+                                             </h2>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <hr>
+                                    <div class="btn-group">
+                                       <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Add more services</button>
+                                       <div class="dropdown-menu dropdown-menu-left autocard">
+                                          <table class="table">
+                                             <tbody>
+                                                @if($secondaryServices)
+                                                   @foreach($secondaryServices as $sservice)
+                                                      <tr>
+                                                         <td>
+                                                            @if(app()->getLocale() == 'fi')
+                                                               {{$sservice->service_title_fi}}
+                                                            @else
+                                                               {{$sservice->service_title}}
+                                                            @endif
+                                                         </td>
+                                                         <td>{{ $sservice->service_price }} €</td>
+                                                         <td>
+                                                            <a href="#">
+                                                               Add 
+                                                               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-cart-plus" viewBox="0 0 16 16">
+                                                                  <path d="M9 5.5a.5.5 0 0 0-1 0V7H6.5a.5.5 0 0 0 0 1H8v1.5a.5.5 0 0 0 1 0V8h1.5a.5.5 0 0 0 0-1H9V5.5z"/>
+                                                                  <path d="M.5 1a.5.5 0 0 0 0 1h1.11l.401 1.607 1.498 7.985A.5.5 0 0 0 4 12h1a2 2 0 1 0 0 4 2 2 0 0 0 0-4h7a2 2 0 1 0 0 4 2 2 0 0 0 0-4h1a.5.5 0 0 0 .491-.408l1.5-8A.5.5 0 0 0 14.5 3H2.89l-.405-1.621A.5.5 0 0 0 2 1H.5zm3.915 10L3.102 4h10.796l-1.313 7h-8.17zM6 14a1 1 0 1 1-2 0 1 1 0 0 1 2 0zm7 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0z"/>
+                                                               </svg>
+                                                            </a>
+                                                         </td>
+                                                      </tr>
+                                                   @endforeach
+                                                @endif
+                                             </tbody>
+                                          </table>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        @endforeach
+                     @endif   
                    </div>
                 </div>
                 <div class="bg-info p-3">
@@ -300,3 +170,21 @@ Online | {{ config('app.name') }}
     </div>
  </div>
 @endsection
+@section('scripts')
+   <script type="text/javascript" src="{{ asset('plugins/bootstrap-datepicker/js/bootstrap-datepicker.min.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('plugins/bootstrap-timepicker/js/bootstrap-timepicker.min.js') }}"></script>
+   <script type="text/javascript" src="{{ asset('plugins/time-picker/js/timepicki.js') }}"></script>
+   <script>
+      $(document).ready(function(){
+         $('#serviceTime').timepicki();
+         var date = new Date();
+         var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
+         $('#scheduleDate').datepicker({
+            autoclose: true,
+            format: 'dd/mm/yyyy',
+            todayHighlight: true,
+            startDate: today,
+         });
+      });
+   </script>
+@endSection

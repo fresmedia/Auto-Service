@@ -89,7 +89,7 @@
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-6">
+                            {{-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="control-label" for="languages">Set Language <span class="optional">(optional)</span></label>
                                     <br>
@@ -99,7 +99,7 @@
                                         @endforeach
                                     </select>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
 
                     </div>

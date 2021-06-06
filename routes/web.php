@@ -23,6 +23,9 @@ use App\Http\Controllers\Frontend\HomePageController;
 use App\Http\Controllers\Frontend\LanguagePageController;
 use App\Http\Controllers\Frontend\CategoryPageController;
 use App\Http\Controllers\Frontend\FrontPagesController;
+use Illuminate\Support\Facades\App;
+
+// use Illuminate\Support\Facades\Session;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,6 +37,12 @@ use App\Http\Controllers\Frontend\FrontPagesController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+
+/*route for language*/
+Route::get('locale/{locale}', function($locale){
+    Session::put('locale',$locale);
+	return redirect()->back();
+});
 
 
 /*

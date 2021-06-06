@@ -73,7 +73,7 @@
                             <span class="hide-menu">Locations </span>
                         </a>
                         <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.locations.index') || Route::is('admin.locations.create') || Route::is('admin.locations.edit')) ? 'in' : null }}">
-                            @if ($user->can('category.view'))
+                            @if ($user->can('location.view'))
                             <li class="sidebar-item">
                                 <a href="{{ route('admin.locations.index') }}" class="sidebar-link {{ (Route::is('admin.locations.index') || Route::is('admin.locations.edit')) ? 'active' : null }}">
                                     <i class="mdi mdi-view-list"></i>
@@ -82,11 +82,39 @@
                             </li>
                             @endif
 
-                            @if ($user->can('category.create'))
+                            @if ($user->can('location.create'))
                             <li class="sidebar-item">
                                 <a href="{{ route('admin.locations.create') }}" class="sidebar-link {{ Route::is('admin.locations.create') ? 'active' : null }}">
                                     <i class="mdi mdi-plus-circle"></i>
                                     <span class="hide-menu"> New Location </span>
+                                </a>
+                            </li>
+                            @endif
+                        </ul>
+                    </li>
+                @endif
+
+                @if ($user->can('service.view') || $user->can('service.create'))
+                    <li class="sidebar-item ">
+                        <a class="sidebar-link has-arrow waves-effect waves-dark" href="javascript:void(0)" aria-expanded="false">
+                            <i class="mdi mdi-tune"></i>
+                            <span class="hide-menu">Services </span>
+                        </a>
+                        <ul aria-expanded="false" class="collapse first-level {{ (Route::is('admin.services.index') || Route::is('admin.services.create') || Route::is('admin.services.edit')) ? 'in' : null }}">
+                            @if ($user->can('service.view'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.services.index') }}" class="sidebar-link {{ (Route::is('admin.services.index') || Route::is('admin.services.edit')) ? 'active' : null }}">
+                                    <i class="mdi mdi-view-list"></i>
+                                    <span class="hide-menu"> Service List </span>
+                                </a>
+                            </li>
+                            @endif
+
+                            @if ($user->can('service.create'))
+                            <li class="sidebar-item">
+                                <a href="{{ route('admin.services.create') }}" class="sidebar-link {{ Route::is('admin.services.create') ? 'active' : null }}">
+                                    <i class="mdi mdi-plus-circle"></i>
+                                    <span class="hide-menu"> New Service </span>
                                 </a>
                             </li>
                             @endif

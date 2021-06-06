@@ -8,6 +8,7 @@
 
     @include('frontend.layouts.partials.styles')
     <title>@yield('title', 'Welcome to Auto Service')</title>
+    @yield('styles')
 </head>
 
 <body>
@@ -15,6 +16,8 @@
     @yield('main-content')
     @include('frontend.layouts.partials.footer')
     @include('frontend.layouts.partials.scripts')
+    @yield('scripts')
+
 </body>
 
 </html>

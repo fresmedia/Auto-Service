@@ -1,21 +1,23 @@
 @extends('backend.layouts.master')
 
 @section('title')
-    @include('backend.pages.roles.partials.title')
+    @include('service::backend.services.partials.title')
 @endsection
 
 @section('admin-content')
-    @include('backend.pages.roles.partials.header-breadcrumbs')
+    @include('service::backend.services.partials.header-breadcrumbs')
     <div class="container-fluid">
-        @include('backend.pages.roles.partials.top-show')
+        @include('service::backend.services.partials.top-show')
         @include('backend.layouts.partials.messages')
         <div class="table-responsive product-table">
-            <table class="table table-striped table-bordered display ajax_view" id="roles_table">
+            <table class="table table-striped table-bordered display ajax_view" id="services_table">
                 <thead>
                     <tr>
                         <th>Sl</th>
-                        <th>Name</th>
-                        <th>Total Permissions</th>
+                        <th>Service Title</th>
+                        <th>Service Type</th>
+                        <th>Service Price</th>
+                        <th>Status</th>
                         <th width="100">Action</th>
                     </tr>
                 </thead>
@@ -27,8 +29,8 @@
 @section('scripts')
     <script>
         $(document).ready(function(){
-            const ajaxURL = "roles";
-            $('table#roles_table').DataTable({
+            const ajaxURL = "<?php echo Route::is('admin.services.trashed' ? 'services/trashed/view' : 'services') ?>";
+            $('table#services_table').DataTable({
                 dom: 'Blfrtip',
                 language: {processing: "<span class='spinner-border spinner-border-sm' role='status' aria-hidden='true'></span> Loading Data..."},
                 processing: true,
@@ -38,8 +40,10 @@
                 buttons: ['excel', 'pdf', 'print'],
                 columns: [
                     {data: 'DT_RowIndex', name: 'DT_RowIndex'},
-                    {data: 'name', name: 'name'},
-                    {data: 'permissions', name: 'permissions'},
+                    {data: 'service_title', name: 'service_title'},
+                    {data: 'service_type', name: 'service_type'},
+                    {data: 'service_price', name: 'service_price'},
+                    {data: 'status', name: 'status'},
                     {data: 'action', name: 'action'}
                 ]
             });
